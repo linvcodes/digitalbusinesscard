@@ -1,0 +1,131 @@
+Build a single-page, mobile-first digital business card using static HTML + CSS + vanilla JS (no frameworks). It must work on mobile and desktop.
+
+Content (exact)
+
+Name: Kristina Mladenova
+
+Job title: Interactive Ads Expert
+
+Tagline (exact, keep styling as-is): — ᴡɪᴛʜ ʟᴏᴠᴇ & ᴄᴏꜰꜰᴇᴇ 🎈🧸
+
+Social links (icons only, no text):
+
+LinkedIn: https://www.linkedin.com/in/kmladenova/
+
+GitHub: https://github.com/live-codes/livecodes
+
+Each opens in a new tab with rel="noopener noreferrer"
+
+Main CTA button (big):
+
+Label: PORTFOLIO
+
+Link for now: https://www.google.com
+
+Opens in new tab with rel="noopener noreferrer"
+
+Layout requirements
+
+A vertical card centered on the page that feels like a “digital business card.”
+
+The card container must be ~90% of viewport height (min-height: 90vh) with margins around it so it never touches edges.
+
+Inside the card: photo at top, then name/title/tagline, then icon row, then big Portfolio button.
+
+Must be responsive and look good on both desktop and mobile without needing separate pages.
+
+Photo requirements
+
+Use an image placeholder file named profile.jpg in the project root.
+
+Display it as a rounded rectangle (not a circle), with a subtle neon outline or glow.
+
+If image is missing, show a nice placeholder block that still fits the design.
+
+Style requirements (cyberpunk, bold, CrazyLabs vibe)
+
+Background: black
+
+Primary neon accent: #dbfe01
+
+Text: white + neon accent
+
+Buttons:
+
+Default buttons are transparent black, neon outline, neon text, bold
+
+Portfolio button is a filled neon pill (background #dbfe01, text black), bold, slightly larger
+
+Use a bold, modern font stack (system fonts are fine) with strong typography.
+
+Add subtle grain/scanline feel (CSS-only overlay OK) but keep readable.
+
+ASCII watermark (behind the card)
+
+Place this ASCII art behind the card as a faint watermark, centered, low opacity, and not interfering with readability:
+
+  .---------.
+  |.-------.|
+  ||>run#  ||
+  ||       ||
+  |"-------'|etf
+.-^---------^-.
+| ---~   AMiGA|
+"-------------'
+
+
+It must look like a background layer and remain visible behind the card.
+
+Terminal-type animation + cursor indicator (core interaction)
+
+Implement a terminal boot-up typing animation on page load:
+
+The card content (name/title/tagline/buttons/icons) should appear as if it’s being “initialized.”
+
+Show a top small “terminal header area” inside the card (above the photo or overlayed neatly) that types:
+
+> booting profile...
+
+> loading links...
+
+> ready
+
+Use a blinking cursor block (e.g. █ or ▋) at the end while typing.
+
+After the boot sequence completes, the cursor can keep blinking and the UI stays interactive.
+
+The animation must not make the page unusable:
+
+Social icons and Portfolio button become clickable once “ready” appears.
+
+Optional but desired: a subtle “typing” sound is NOT required (do not add audio unless asked).
+
+Icons
+
+Use react-icons via CDN only if possible with static setup; otherwise use inline SVG icons that resemble LinkedIn and GitHub.
+
+The icons should be neon (#dbfe01) and slightly glow on hover.
+
+Icons have no text labels.
+
+Files to create
+
+Create exactly these files:
+
+index.html
+
+styles.css
+
+script.js
+
+(expects) profile.jpg (placeholder; don’t generate the image file, just reference it)
+
+Implementation notes
+
+No build step. Must run by opening index.html.
+
+Use clean semantic HTML.
+
+Use CSS for neon outlines/glows, button hover effects, scanlines overlay.
+
+Use JS for typing animation, cursor blinking, and the staged reveal of UI.
