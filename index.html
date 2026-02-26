@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Kristina Mladenova | Interactive Ads Expert</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="styles.css" />
     </head>
 
@@ -62,6 +63,11 @@
 "-------------'
           </pre
                     >
+
+                    <!-- QR CODE -->
+                    <div class="qr-wrapper is-hidden" id="qr-section">
+                        <canvas id="qr-canvas"></canvas>
+                    </div>
                 </div>
 
                 <!-- ACTIONS -->
@@ -120,6 +126,7 @@
             </section>
         </main>
 
+        <script src="https://unpkg.com/qrcode@1.5.4/build/qrcode.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
