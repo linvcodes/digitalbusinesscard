@@ -128,6 +128,18 @@
         max-height: 120px;
     }
 
+    .terminal-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .terminal-text {
+        flex: 1;
+        min-width: 0;
+    }
+
     .terminal-header.collapsing {
         max-height: 0;
         opacity: 0;
@@ -251,6 +263,57 @@
         margin-inline: auto;
     }
 
+    .flappy-wrap {
+        position: relative;
+        display: inline-block;
+        margin-inline: auto;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .flappy-pre {
+        display: block;
+        opacity: 1;
+        font-size: clamp(7px, 1.8vw, 11px);
+        line-height: 1.15;
+    }
+
+    .flappy-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: clamp(8px, 2vw, 11px);
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        color: #000;
+        background: var(--neon);
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 200ms ease;
+        pointer-events: none;
+    }
+
+    .flappy-overlay.hidden {
+        opacity: 0;
+    }
+
+    .flappy-overlay:not(.hidden):not(:empty) {
+        opacity: 0.92;
+    }
+
+    .flappy-label {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: clamp(9px, 2vw, 11px);
+        color: var(--neon);
+        opacity: 0.5;
+        letter-spacing: 0.1em;
+        text-align: center;
+        margin-top: 4px;
+    }
+
     /* Actions */
     .actions {
         display: grid;
@@ -281,31 +344,28 @@
 
     .social-links {
         display: flex;
-        gap: clamp(12px, 3.5vw, 20px);
-        justify-content: center;
+        gap: clamp(10px, 2.5vw, 16px);
+        align-items: center;
+        flex-shrink: 0;
     }
 
     .social-icon {
-        width: clamp(38px, 10vw, 46px);
-        height: clamp(38px, 10vw, 46px);
-        border-radius: 999px;
-        border: 1.5px solid var(--neon);
         display: grid;
         place-items: center;
         color: var(--neon);
-        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease, color 180ms ease;
+        opacity: 0.75;
+        transition: transform 180ms ease, opacity 180ms ease, filter 180ms ease;
     }
 
     .social-icon svg {
-        width: clamp(16px, 4.5vw, 20px);
-        height: clamp(16px, 4.5vw, 20px);
+        width: clamp(18px, 5vw, 22px);
+        height: clamp(18px, 5vw, 22px);
     }
 
     .social-icon:hover {
-        background: var(--neon);
-        color: #000;
+        opacity: 1;
         transform: translateY(-2px);
-        box-shadow: 0 0 16px rgba(219, 254, 1, 0.75);
+        filter: drop-shadow(0 0 6px rgba(219, 254, 1, 0.9));
     }
 
     /* Reveal — spring entrance */
@@ -423,64 +483,79 @@
         opacity: 1;
     }
 
-    /* ── Calendly popup chrome overrides ────────────────────────────────────
-       Targets elements Calendly injects into YOUR DOM — not the iframe. */
-
-    /* Backdrop */
-    .calendly-overlay {
-        background: rgba(0, 0, 0, 0.88) !important;
-        backdrop-filter: blur(6px) !important;
+    /* ── Calendly modal ─────────────────────────────────────────────────────── */
+    .cal-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 260ms ease;
     }
 
-    /* Popup shell — full viewport height, no max-height cap, no internal scroll */
-    .calendly-overlay .calendly-popup {
-        background: #000 !important;
-        border: 2px solid var(--neon) !important;
-        border-radius: var(--radius) !important;
-        box-shadow: 0 0 40px rgba(219, 254, 1, 0.35) !important;
-        height: 96vh !important;
-        max-height: 96vh !important;
-        top: 50% !important;
-        transform: translateY(-50%) translateX(-50%) !important;
+    .cal-modal.open {
+        opacity: 1;
+        pointer-events: auto;
     }
 
-    .calendly-popup-content {
-        height: 100% !important;
-        overflow: hidden !important;
+    .cal-modal-inner {
+        position: relative;
+        width: min(94vw, 480px);
+        height: min(700px, 94dvh);
+        background: #000;
+        border: 2px solid var(--neon);
+        border-radius: var(--radius);
+        box-shadow: 0 0 40px rgba(219, 254, 1, 0.35);
+        overflow: hidden;
+        transform: scale(0.92);
+        transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+        display: flex;
+        flex-direction: column;
     }
 
-    .calendly-popup-content iframe {
-        height: 100% !important;
-        width: 100% !important;
+    .cal-modal.open .cal-modal-inner {
+        transform: scale(1);
+    }
+
+    .cal-modal-close {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        z-index: 10;
+        background: var(--neon);
+        border: none;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        color: #000;
+        font-weight: 900;
+    }
+
+    .cal-modal-inner .calendly-inline-widget {
         display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        flex: 1 1 auto;
+        overflow: hidden;
+        /* height is 100% minus the close-button zone */
+        height: calc(100% - 36px) !important;
     }
 
-    /* Close button — neon */
-    .calendly-overlay .calendly-popup-close {
-        background: var(--neon) !important;
-        border-radius: 50% !important;
-        width: 28px !important;
-        height: 28px !important;
-        top: 12px !important;
-        right: 12px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        opacity: 1 !important;
-    }
-
-    .calendly-overlay .calendly-popup-close svg {
-        filter: invert(1) !important;
-    }
-
-    /* Hide their spinner — the iframe renders its own loading state inside */
-    .calendly-spinner {
-        display: none !important;
-    }
-
-    /* iframe recolour: invert to dark + hue-rotate toward neon yellow-green */
-    .calendly-popup-content iframe {
-        filter: invert(1) hue-rotate(155deg) saturate(1.4) !important;
+    .cal-modal-inner .calendly-inline-widget iframe {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+        filter: invert(1) hue-rotate(35deg) !important;
     }
 
     @media (max-height: 700px) {
