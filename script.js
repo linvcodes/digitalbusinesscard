@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => { cursor.style.display = "none"; }, 420);
 
         const qrSize = Math.round(Math.min(Math.max(window.innerHeight * 0.08, 46), 72));
-        QRCode.toCanvas(qrCanvas, "https://github.com/linvcodes/digitalbusinesscard.git", {
+        QRCode.toCanvas(qrCanvas, "https://linvcodes.github.io/digitalbusinesscard", {
             width: qrSize,
             margin: 1,
             color: { dark: "#dbfe01", light: "#000000" }
