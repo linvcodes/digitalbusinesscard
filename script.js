@@ -9,21 +9,40 @@ var QRCode=function(t){"use strict";var r,e=function(){return"function"==typeof 
 window.QRCode = QRCode;
 document.addEventListener("DOMContentLoaded", () => {
     const terminalContent = document.getElementById("terminal-content");
-    const terminalHeader  = document.getElementById("terminal-header");
     const cursor          = document.querySelector(".cursor");
 
-    const profile   = document.getElementById("profile-section");
-    const info      = document.getElementById("info-section");
-    const actions   = document.getElementById("actions-section");
-    const qrSection = document.getElementById("qr-section");
-    const qrCanvas  = document.getElementById("qr-canvas");
+    const profile  = document.getElementById("profile-section");
+    const info     = document.getElementById("info-section");
+    const actions  = document.getElementById("actions-section");
+    const qrCanvas = document.getElementById("qr-canvas");
+    const qrTab    = document.getElementById("qr-tab");
+    const qrModal  = document.getElementById("qr-modal");
+
+    // QR tab popup
+    let qrGenerated = false;
+    function openQrModal() {
+        if (!qrGenerated) {
+            QRCode.toCanvas(qrCanvas, "https://linvcodes.github.io/digitalbusinesscard", {
+                width: 200,
+                margin: 2,
+                color: { dark: "#dbfe01", light: "#000000" }
+            });
+            qrGenerated = true;
+        }
+        qrModal.classList.add("open");
+    }
+    function closeQrModal() { qrModal.classList.remove("open"); }
+
+    qrTab.addEventListener("click", openQrModal);
+    document.getElementById("qr-modal-close").addEventListener("click", closeQrModal);
+    qrModal.addEventListener("click", (e) => { if (e.target === qrModal) closeQrModal(); });
 
     const lines = ["> booting profile...", "> loading links...", "> ready"];
 
     const GLYPHS          = "!<>-_\\/[]{}=+*^?#@$%&|";
-    const TYPE_SPEED      = 18;  // ms between chars
-    const SCRAMBLE_FRAMES = 2;   // rAF noise frames before resolving
-    const LINE_DELAY      = 160;
+    const TYPE_SPEED      = 10;  // ms between chars
+    const SCRAMBLE_FRAMES = 1;   // rAF noise frames before resolving
+    const LINE_DELAY      = 90;
 
     let lineIndex = 0;
     let charIndex = 0;
@@ -77,19 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
         cursor.classList.add("boot-flash");
         setTimeout(() => { cursor.style.display = "none"; }, 420);
 
-        const qrSize = Math.round(Math.min(Math.max(window.innerHeight * 0.08, 46), 72));
-        QRCode.toCanvas(qrCanvas, "https://linvcodes.github.io/digitalbusinesscard", {
-            width: qrSize,
-            margin: 1,
-            color: { dark: "#dbfe01", light: "#000000" }
-        });
-
-        show(profile,    80);
-        show(info,      220);
-        show(qrSection, 300);
-        show(actions,   380);
-
-        setTimeout(() => { terminalHeader.classList.add("collapsing"); }, 700);
+        show(profile,  80);
+        show(info,    220);
+        show(actions, 380);
     }
 
     setTimeout(typeNextChar, 180);

@@ -28,6 +28,29 @@
         position: relative;
     }
 
+    /* Matrix GIF background — tiled */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background-image: url("matrix.gif");
+        background-repeat: repeat;
+        background-size: auto;
+        opacity: 0.18;
+    }
+
+    /* Lime neon colour overlay */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: var(--neon);
+        mix-blend-mode: color;
+        pointer-events: none;
+    }
+
     /* Watermark */
     .ascii-watermark {
         position: fixed;
@@ -53,7 +76,7 @@
         position: fixed;
         inset: 0;
         pointer-events: none;
-        z-index: 1;
+        z-index: 10;
         background: repeating-linear-gradient(to bottom,
                 rgba(255, 255, 255, 0) 0px,
                 rgba(255, 255, 255, 0) 2px,
@@ -82,13 +105,15 @@
         display: flex;
         flex-direction: column;
         gap: var(--gap);
+        justify-content: space-evenly;
         min-height: 0;
+        position: relative;
     }
 
     /* Terminal */
     .terminal-header {
-        border-bottom: 1px solid rgba(219, 254, 1, 0.28);
-        padding-bottom: clamp(8px, 1.4vh, 12px);
+        border-top: 1px solid rgba(219, 254, 1, 0.28);
+        padding-top: clamp(8px, 1.4vh, 12px);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         color: var(--neon);
         font-size: clamp(12px, 1.8vw, 14px);
@@ -98,17 +123,17 @@
         overflow: hidden;
         transition: max-height 420ms cubic-bezier(0.4, 0, 0.2, 1),
                     opacity 320ms ease,
-                    padding-bottom 420ms cubic-bezier(0.4, 0, 0.2, 1),
-                    margin-bottom 420ms cubic-bezier(0.4, 0, 0.2, 1);
+                    padding-top 420ms cubic-bezier(0.4, 0, 0.2, 1),
+                    margin-top 420ms cubic-bezier(0.4, 0, 0.2, 1);
         max-height: 120px;
     }
 
     .terminal-header.collapsing {
         max-height: 0;
         opacity: 0;
-        padding-bottom: 0;
-        margin-bottom: calc(-1 * var(--gap));
-        border-bottom-color: transparent;
+        padding-top: 0;
+        margin-top: calc(-1 * var(--gap));
+        border-top-color: transparent;
         pointer-events: none;
     }
 
@@ -226,25 +251,8 @@
         margin-inline: auto;
     }
 
-    /* QR Code */
-    .qr-wrapper {
-        display: grid;
-        place-items: center;
-        /* Reserve exactly the same vertical space the terminal header occupied */
-        height: clamp(46px, 8vh, 72px);
-    }
-
-    #qr-canvas {
-        /* Fill the reserved height, keep square */
-        width: clamp(46px, 8vh, 72px) !important;
-        height: clamp(46px, 8vh, 72px) !important;
-        border-radius: 4px;
-        display: block;
-    }
-
     /* Actions */
     .actions {
-        margin-top: auto;
         display: grid;
         gap: clamp(12px, 2vh, 18px);
         justify-items: center;
@@ -313,6 +321,166 @@
         pointer-events: auto;
         transition: opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
                     transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* QR Tab — vertical notebook tab protruding from right edge of card */
+    .qr-tab {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        background: var(--neon);
+        color: #000;
+        border: none;
+        cursor: pointer;
+        padding: 14px 8px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-weight: 900;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        border-radius: 0 8px 8px 0;
+        box-shadow: 4px 0 18px rgba(219, 254, 1, 0.55);
+        white-space: nowrap;
+        transition: box-shadow 180ms ease;
+        z-index: 5;
+    }
+
+    .qr-tab:hover {
+        box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
+    }
+
+    /* QR Modal */
+    .qr-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 260ms ease;
+    }
+
+    .qr-modal.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .qr-modal-inner {
+        position: relative;
+        background: #000;
+        border: 2px solid var(--neon);
+        border-radius: var(--radius);
+        padding: 28px 32px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        box-shadow: 0 0 40px rgba(219, 254, 1, 0.45);
+        transform: scale(0.88);
+        transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .qr-modal.open .qr-modal-inner {
+        transform: scale(1);
+    }
+
+    #qr-canvas {
+        width: 200px !important;
+        height: 200px !important;
+        border-radius: 6px;
+        display: block;
+    }
+
+    .qr-modal-label {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--neon);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        opacity: 0.75;
+    }
+
+    .qr-modal-close {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: var(--neon);
+        font-size: 16px;
+        cursor: pointer;
+        opacity: 0.65;
+        line-height: 1;
+        transition: opacity 140ms ease;
+    }
+
+    .qr-modal-close:hover {
+        opacity: 1;
+    }
+
+    /* ── Calendly popup chrome overrides ────────────────────────────────────
+       Targets elements Calendly injects into YOUR DOM — not the iframe. */
+
+    /* Backdrop */
+    .calendly-overlay {
+        background: rgba(0, 0, 0, 0.88) !important;
+        backdrop-filter: blur(6px) !important;
+    }
+
+    /* Popup shell — full viewport height, no max-height cap, no internal scroll */
+    .calendly-overlay .calendly-popup {
+        background: #000 !important;
+        border: 2px solid var(--neon) !important;
+        border-radius: var(--radius) !important;
+        box-shadow: 0 0 40px rgba(219, 254, 1, 0.35) !important;
+        height: 96vh !important;
+        max-height: 96vh !important;
+        top: 50% !important;
+        transform: translateY(-50%) translateX(-50%) !important;
+    }
+
+    .calendly-popup-content {
+        height: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .calendly-popup-content iframe {
+        height: 100% !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* Close button — neon */
+    .calendly-overlay .calendly-popup-close {
+        background: var(--neon) !important;
+        border-radius: 50% !important;
+        width: 28px !important;
+        height: 28px !important;
+        top: 12px !important;
+        right: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        opacity: 1 !important;
+    }
+
+    .calendly-overlay .calendly-popup-close svg {
+        filter: invert(1) !important;
+    }
+
+    /* Hide their spinner — the iframe renders its own loading state inside */
+    .calendly-spinner {
+        display: none !important;
+    }
+
+    /* iframe recolour: invert to dark + hue-rotate toward neon yellow-green */
+    .calendly-popup-content iframe {
+        filter: invert(1) hue-rotate(155deg) saturate(1.4) !important;
     }
 
     @media (max-height: 700px) {
