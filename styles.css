@@ -94,10 +94,35 @@
         font-size: clamp(12px, 1.8vw, 14px);
         line-height: 1.45;
         min-height: clamp(46px, 8vh, 72px);
+        /* smooth collapse prep */
+        overflow: hidden;
+        transition: max-height 420ms cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 320ms ease,
+                    padding-bottom 420ms cubic-bezier(0.4, 0, 0.2, 1),
+                    margin-bottom 420ms cubic-bezier(0.4, 0, 0.2, 1);
+        max-height: 120px;
+    }
+
+    .terminal-header.collapsing {
+        max-height: 0;
+        opacity: 0;
+        padding-bottom: 0;
+        margin-bottom: calc(-1 * var(--gap));
+        border-bottom-color: transparent;
+        pointer-events: none;
     }
 
     #terminal-content {
         display: inline;
+    }
+
+    /* Scramble chars — dimmer during decode, resolved chars inherit full neon */
+    #terminal-content span {
+        opacity: 0.55;
+        transition: opacity 60ms ease;
+    }
+    #terminal-content span.resolved {
+        opacity: 1;
     }
 
     .cursor {
@@ -110,10 +135,19 @@
         animation: blink 0.85s step-end infinite;
     }
 
+    /* Boot-complete cursor flash before hide */
+    .cursor.boot-flash {
+        animation: boot-flash 0.4s ease-out forwards;
+    }
+
     @keyframes blink {
-        50% {
-            opacity: 0;
-        }
+        50% { opacity: 0; }
+    }
+
+    @keyframes boot-flash {
+        0%   { opacity: 1; background: var(--neon); box-shadow: 0 0 0 rgba(219,254,1,0); }
+        40%  { opacity: 1; background: #fff;        box-shadow: 0 0 18px rgba(219,254,1,0.9); }
+        100% { opacity: 0; background: var(--neon); box-shadow: 0 0 0 rgba(219,254,1,0); }
     }
 
     /* Profile */
@@ -192,6 +226,22 @@
         margin-inline: auto;
     }
 
+    /* QR Code */
+    .qr-wrapper {
+        display: grid;
+        place-items: center;
+        /* Reserve exactly the same vertical space the terminal header occupied */
+        height: clamp(46px, 8vh, 72px);
+    }
+
+    #qr-canvas {
+        /* Fill the reserved height, keep square */
+        width: clamp(46px, 8vh, 72px) !important;
+        height: clamp(46px, 8vh, 72px) !important;
+        border-radius: 4px;
+        display: block;
+    }
+
     /* Actions */
     .actions {
         margin-top: auto;
@@ -250,18 +300,19 @@
         box-shadow: 0 0 16px rgba(219, 254, 1, 0.75);
     }
 
-    /* Reveal */
+    /* Reveal — spring entrance */
     .is-hidden {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(10px) scale(0.97);
         pointer-events: none;
     }
 
     .is-shown {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         pointer-events: auto;
-        transition: opacity 360ms ease, transform 360ms ease;
+        transition: opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     @media (max-height: 700px) {
