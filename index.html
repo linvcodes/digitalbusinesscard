@@ -6,6 +6,7 @@
         <title>Kristina Mladenova | Interactive Ads Expert</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="styles.css" />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -28,12 +29,6 @@
 
         <main class="card-container">
             <section class="card">
-                <!-- TERMINAL HEADER -->
-                <div class="terminal-header" id="terminal-header">
-                    <div id="terminal-content"></div>
-                    <span class="cursor" aria-hidden="true">█</span>
-                </div>
-
                 <!-- PROFILE -->
                 <div class="profile-section is-hidden" id="profile-section">
                     <div class="image-container">
@@ -64,22 +59,16 @@
           </pre
                     >
 
-                    <!-- QR CODE -->
-                    <div class="qr-wrapper is-hidden" id="qr-section">
-                        <canvas id="qr-canvas"></canvas>
-                    </div>
                 </div>
 
                 <!-- ACTIONS -->
                 <div class="actions is-hidden" id="actions-section">
-                    <a
-                        href="https://www.google.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
                         class="btn-portfolio"
+                        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/linv-codes'}); return false;"
                     >
-                        PORTFOLIO
-                    </a>
+                        BOOK A MEETING
+                    </button>
 
                     <div class="social-links" aria-label="Social links">
                         <!-- LINKEDIN -->
@@ -123,9 +112,34 @@
                         </a>
                     </div>
                 </div>
+                <!-- TERMINAL FOOTER -->
+                <div class="terminal-header" id="terminal-header">
+                    <div id="terminal-content"></div>
+                    <span class="cursor" aria-hidden="true">█</span>
+                </div>
+
+                <!-- QR TAB -->
+                <button class="qr-tab" id="qr-tab" aria-label="Scan QR Code">
+                    <span>SCAN QR CODE</span>
+                </button>
             </section>
         </main>
 
+        <!-- QR POPUP MODAL -->
+        <div class="qr-modal" id="qr-modal" role="dialog" aria-modal="true" aria-label="QR Code">
+            <div class="qr-modal-inner">
+                <canvas id="qr-canvas"></canvas>
+                <p class="qr-modal-label">SCAN TO VISIT</p>
+                <button class="qr-modal-close" id="qr-modal-close" aria-label="Close">✕</button>
+            </div>
+        </div>
+
         <script src="script.js"></script>
-    </body>
+        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<div style="position:absolute; width:0; height:0; overflow:hidden;">
+  <iframe 
+    src="https://www.youtube-nocookie.com/embed/BhB6Lb7_kN8?autoplay=1&mute=1&loop=1&playlist=BhB6Lb7_kN8&controls=0&modestbranding=1"
+    allow="autoplay"
+  ></iframe>
+</div>    </body>
 </html>
