@@ -83,8 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function openQrModal() {
         SFX.play("qropen", 0.5);
         if (!qrGenerated) {
+            // Read the CSS variable so QR size stays in sync with CSS clamp
+            const qrSize = parseInt(
+                getComputedStyle(document.documentElement)
+                    .getPropertyValue("--qr-size")
+                    .trim()
+            ) || 200;
             QRCode.toCanvas(qrCanvas, "https://linvcodes.github.io/digitalbusinesscard", {
-                width: 200,
+                width: qrSize,
                 margin: 2,
                 color: { dark: "#dbfe01", light: "#000000" }
             });
