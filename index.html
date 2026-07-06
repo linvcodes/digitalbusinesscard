@@ -44,8 +44,8 @@
                 <!-- INFO -->
                 <div class="info-section is-hidden" id="info-section">
                     <h1 class="name">KRISTINA MLADENOVA</h1>
-                    <p class="job-title">INTERACTIVE ADS EXPERT</p>
-                    <p class="tagline">— ᴡɪᴛʜ ʟᴏᴠᴇ & ᴄᴏꜰꜰᴇᴇ 🎈🧸</p>
+                    <p class="job-title">ADTECH ARCHITECT · FOUNDER · SPEAKER</p>
+                    <p class="tagline">Studio since 2016. Built AI tooling across 200+ repos. Cold DMs → conference stages.</p>
 
                     <!-- ASCII FLAPPY BIRD -->
                     <div class="flappy-wrap">
@@ -103,10 +103,18 @@
                     </div>
                 </div>
 
-                <!-- QR TAB -->
-                <button class="qr-tab" id="qr-tab" aria-label="Scan QR Code">
-                    <span>SCAN QR CODE</span>
-                </button>
+                <!-- SIDE TABS -->
+                <div class="side-tabs">
+                    <!-- CV TAB -->
+                    <button class="cv-tab" id="cv-tab" aria-label="View CV">
+                        <span>CV / PROJECTS</span>
+                    </button>
+
+                    <!-- QR TAB -->
+                    <button class="qr-tab" id="qr-tab" aria-label="Scan QR Code">
+                        <span>SCAN QR CODE</span>
+                    </button>
+                </div>
             </section>
         </main>
 
@@ -128,6 +136,101 @@
                     data-url="https://calendly.com/linv-codes"
                     style="width:100%; height:100%; min-width:0;"
                 ></div>
+            </div>
+        </div>
+
+        <!-- CV modal -->
+        <div class="cv-modal" id="cv-modal" role="dialog" aria-modal="true" aria-label="CV">
+            <div class="cv-modal-inner">
+                <button class="cv-modal-close" id="cv-modal-close" aria-label="Close">✕</button>
+                <h2 class="cv-modal-title">CV</h2>
+
+                <section class="cv-section">
+                    <p class="cv-summary">I've run my own studio since 2016. I find users, talk to them directly, and build what solves their problem. I do this on Reddit and Discord, through cold outreach, and through ads on a small budget. I also build the tools that make the follow-up work fast.</p>
+                </section>
+
+                <section class="cv-section">
+                    <h3 class="cv-section-title">EXPERIENCE</h3>
+
+                    <div class="cv-entry">
+                        <div class="cv-entry-header">
+                            <span class="cv-entry-role">Founder, LINV Design Studio</span>
+                            <span class="cv-entry-date">2016 — present</span>
+                        </div>
+                        <ul class="cv-entry-bullets">
+                            <li>Cold emailed and DMed people at companies, sent pitch decks, then upsold into full packages once they said yes.</li>
+                            <li>Ran ads on small budgets ($3 to $5 a day), picking cities and markets by hand so the spend went further.</li>
+                            <li>Grew the studio Instagram from 0 to 3,000 followers in a year — studygram and productivity niche, mostly collabs with other creators.</li>
+                            <li>
+                                Built <strong>Clutterly</strong>, an algorithm that reads a household's clutter and energy level and builds a task list, plus a local map of donation centers based on what people actually discard.
+                                <span class="cv-project-badge">IN DEV</span>
+                            </li>
+                            <li>
+                                Built <strong>Soulmental.org</strong>, a webshop with orders, blog, and about page for a well known local music producer group.
+                                <a href="https://soulmental.org" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                                <iframe class="cv-project-frame" src="https://soulmental.org" loading="lazy" title="Soulmental.org"></iframe>
+                            </li>
+                            <li>
+                                Built <strong>Liber8tech.org</strong>, a technical writing and news blog.
+                                <a href="https://liber8tech.org" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                                <iframe class="cv-project-frame" src="https://liber8tech.org" loading="lazy" title="Liber8tech.org"></iframe>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-entry">
+                        <div class="cv-entry-header">
+                            <span class="cv-entry-role">AdTech System Architect, CrazyLabs</span>
+                            <span class="cv-entry-date">2025 — present</span>
+                        </div>
+                        <ul class="cv-entry-bullets">
+                            <li>Brought back a dead ad channel — used AI research to find the real long term problem instead of chasing a quick fix.</li>
+                            <li>Built automation and multi-agent tooling across 200+ repos, cutting manual work for the team.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-entry">
+                        <div class="cv-entry-header">
+                            <span class="cv-entry-role">EESTEC LC Skopje</span>
+                            <span class="cv-entry-date">2021 — 2023</span>
+                        </div>
+                        <ul class="cv-entry-bullets">
+                            <li>Main contact between the European board and the local 400 member committee — did the company outreach and networking, then turned it into a newsletter for the members.</li>
+                            <li>Built an email template generator so non-technical members could send branded newsletters without touching code — still used today.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="cv-section">
+                    <h3 class="cv-section-title">SPEAKING</h3>
+                    <ul class="cv-entry-bullets cv-entry-bullets--flat">
+                        <li>Guest lecturer, FINKI Entrepreneurship course — scouted directly by a professor. Talked about building MVPs, scaling, and marketing with AI.</li>
+                        <li>
+                            Speaker, <strong>Crazy For AI 2</strong> — 200+ people, live demo building a product from idea to launch.
+                            <a href="https://linvcodes.github.io/CrazyForAi/" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                            <iframe class="cv-project-frame" src="https://linvcodes.github.io/CrazyForAi/" loading="lazy" title="Crazy For AI"></iframe>
+                        </li>
+                        <li>Workshop leader, Base42/EESTEC — 6 hour hands-on session on Three.js and WebGL game dev.</li>
+                    </ul>
+                </section>
+
+                <section class="cv-section">
+                    <h3 class="cv-section-title">SKILLS</h3>
+                    <ul class="cv-entry-bullets cv-entry-bullets--flat">
+                        <li><strong>Community:</strong> Reddit, Discord, Twitter, cold outreach, DMs, pitch decks</li>
+                        <li><strong>Growth:</strong> paid ads on small budgets, organic social growth, positioning, lead gen</li>
+                        <li><strong>Technical:</strong> TypeScript, JavaScript, Python, React, Node, AI agent workflows, scraping</li>
+                    </ul>
+                </section>
+
+                <section class="cv-section">
+                    <h3 class="cv-section-title">EDUCATION</h3>
+                    <ul class="cv-entry-bullets cv-entry-bullets--flat">
+                        <li>Faculty of Computer Science and Engineering – Skopje — Computer Networks and Security (2020–2024)</li>
+                        <li>Semos Education — Computer Programming (2017)</li>
+                        <li>DSULUD Lazar Licenoski — Graduate Graphic Technician</li>
+                    </ul>
+                </section>
             </div>
         </div>
 

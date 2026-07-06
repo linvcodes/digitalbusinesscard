@@ -107,6 +107,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("qr-modal-close").addEventListener("click", closeQrModal);
     qrModal.addEventListener("click", (e) => { if (e.target === qrModal) closeQrModal(); });
 
+    // CV / Projects tab popup
+    const cvTab   = document.getElementById("cv-tab");
+    const cvModal = document.getElementById("cv-modal");
+
+    function openCvModal() {
+        SFX.play("qropen", 0.5);
+        cvModal.classList.add("open");
+    }
+    function closeCvModal() {
+        SFX.play("qrclose", 0.5);
+        cvModal.classList.remove("open");
+    }
+
+    cvTab.addEventListener("click", openCvModal);
+    document.getElementById("cv-modal-close").addEventListener("click", closeCvModal);
+    cvModal.addEventListener("click", (e) => { if (e.target === cvModal) closeCvModal(); });
+
     const lines = ["> booting profile...", "> loading links...", "> ready"];
 
     const GLYPHS          = "!<>-_\\/[]{}=+*^?#@$%&|";

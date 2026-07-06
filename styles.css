@@ -6,6 +6,7 @@
 
     :root {
         --neon: #dbfe01;
+        --neon-dark: #8a9e00;
         --bg: #000;
         --white: #fff;
 
@@ -389,15 +390,23 @@
                     transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* QR Tab — vertical notebook tab protruding from right edge of card */
-    .qr-tab {
+    /* Side tabs — vertical notebook tabs protruding from the right edge of the card,
+       CV stacked above QR */
+    .side-tabs {
         position: absolute;
         left: 100%;
         top: 50%;
         transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(6px, 1.5vh, 12px);
+        z-index: 5;
+    }
+
+    .cv-tab,
+    .qr-tab {
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        background: var(--neon);
         color: #000;
         border: none;
         cursor: pointer;
@@ -408,14 +417,26 @@
         letter-spacing: 0.16em;
         text-transform: uppercase;
         border-radius: 0 clamp(5px, 1vw, 8px) clamp(5px, 1vw, 8px) 0;
-        box-shadow: 4px 0 18px rgba(219, 254, 1, 0.55);
         white-space: nowrap;
         transition: box-shadow 180ms ease;
-        z-index: 5;
+    }
+
+    .cv-tab {
+        background: var(--neon);
+        box-shadow: 4px 0 18px rgba(219, 254, 1, 0.55);
+    }
+
+    .cv-tab:hover {
+        box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
+    }
+
+    .qr-tab {
+        background: var(--neon-dark);
+        box-shadow: 4px 0 18px rgba(138, 158, 0, 0.55);
     }
 
     .qr-tab:hover {
-        box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
+        box-shadow: 6px 0 28px rgba(138, 158, 0, 0.85);
     }
 
     /* QR Modal */
@@ -564,6 +585,196 @@
         filter: invert(1) hue-rotate(35deg) !important;
     }
 
+    /* ── CV / Projects modal ────────────────────────────────────────────────── */
+    .cv-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 260ms ease;
+    }
+
+    .cv-modal.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .cv-modal-inner {
+        position: relative;
+        width: min(94vw, 480px);
+        height: min(80vh, 720px);
+        background: #000;
+        border: 2px solid var(--neon);
+        border-radius: var(--radius);
+        box-shadow: 0 0 40px rgba(219, 254, 1, 0.35);
+        overflow-y: auto;
+        transform: scale(0.92);
+        transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+        padding: clamp(16px, 4vw, 28px) clamp(14px, 3.5vw, 22px);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(10px, 2vh, 16px);
+    }
+
+    .cv-modal.open .cv-modal-inner {
+        transform: scale(1);
+    }
+
+    .cv-modal-close {
+        position: absolute;
+        top: clamp(6px, 1.5vw, 10px);
+        right: clamp(8px, 2vw, 12px);
+        z-index: 10;
+        background: var(--neon);
+        border: none;
+        border-radius: 50%;
+        width: clamp(24px, 5vw, 32px);
+        height: clamp(24px, 5vw, 32px);
+        font-size: clamp(12px, 2.5vw, 16px);
+        line-height: 1;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        color: #000;
+        font-weight: 900;
+    }
+
+    .cv-modal-title {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--neon);
+        font-size: clamp(13px, 3vw, 16px);
+        letter-spacing: 0.2em;
+        text-align: center;
+        opacity: 0.85;
+    }
+
+    .cv-summary {
+        color: var(--white);
+        opacity: 0.8;
+        font-size: clamp(12px, 2.8vw, 14px);
+        line-height: 1.5;
+    }
+
+    .cv-section {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(8px, 1.6vh, 12px);
+    }
+
+    .cv-section-title {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--neon);
+        font-size: clamp(11px, 2.6vw, 13px);
+        letter-spacing: 0.16em;
+        opacity: 0.85;
+        border-bottom: 1px solid rgba(219, 254, 1, 0.3);
+        padding-bottom: 4px;
+    }
+
+    .cv-entry {
+        border: 1px solid rgba(219, 254, 1, 0.4);
+        border-radius: clamp(8px, 1.5vw, 12px);
+        padding: clamp(10px, 2vw, 14px);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(6px, 1.2vh, 10px);
+    }
+
+    .cv-entry-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .cv-entry-role {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--neon);
+        font-weight: 900;
+        font-size: clamp(11px, 2.6vw, 13px);
+        letter-spacing: 0.04em;
+    }
+
+    .cv-entry-date {
+        color: var(--white);
+        opacity: 0.6;
+        font-size: clamp(10px, 2.2vw, 12px);
+        white-space: nowrap;
+    }
+
+    .cv-entry-bullets {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(8px, 1.6vh, 12px);
+        color: var(--white);
+        opacity: 0.85;
+        font-size: clamp(11px, 2.6vw, 13px);
+        line-height: 1.45;
+    }
+
+    .cv-entry-bullets li {
+        padding-left: 1.1em;
+        position: relative;
+    }
+
+    .cv-entry-bullets li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--neon);
+        font-weight: 900;
+    }
+
+    .cv-entry-bullets--flat {
+        border: 1px solid rgba(219, 254, 1, 0.4);
+        border-radius: clamp(8px, 1.5vw, 12px);
+        padding: clamp(10px, 2vw, 14px);
+    }
+
+    .cv-project-link {
+        display: inline-block;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #000;
+        background: var(--neon);
+        text-decoration: none;
+        font-weight: 900;
+        font-size: clamp(9px, 2vw, 11px);
+        letter-spacing: 0.08em;
+        padding: 3px 8px;
+        border-radius: 999px;
+        margin-left: 6px;
+    }
+
+    .cv-project-badge {
+        display: inline-block;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--neon);
+        border: 1px solid var(--neon);
+        font-weight: 900;
+        font-size: clamp(9px, 2vw, 11px);
+        letter-spacing: 0.08em;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-left: 6px;
+    }
+
+    .cv-project-frame {
+        display: block;
+        width: 100%;
+        height: clamp(140px, 26vh, 190px);
+        margin-top: clamp(6px, 1.2vh, 10px);
+        border: 1px solid var(--neon);
+        border-radius: clamp(6px, 1vw, 10px);
+        background: #000;
+    }
+
     /* Short viewports (landscape phones, small windows) */
     @media (max-height: 700px) {
         :root {
@@ -597,7 +808,7 @@
             width: 96vw;
         }
 
-        .qr-tab {
+        .side-tabs {
             display: none;
         }
     }
