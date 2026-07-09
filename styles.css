@@ -499,6 +499,17 @@
         box-shadow: 6px 0 28px rgba(245, 184, 208, 0.85);
     }
 
+    .tab-btn--blue-dark {
+        background: var(--neon-dark);
+        color: #fff;
+        box-shadow: 4px 0 18px rgba(90, 148, 196, 0.55);
+    }
+
+    .tab-btn--blue-dark:hover,
+    .tab-btn--blue-dark.is-active {
+        box-shadow: 6px 0 28px rgba(90, 148, 196, 0.85);
+    }
+
     /* ── Cover Letter panel ─────────────────────────────────────────────────── */
     .letter-body {
         flex: 1;
