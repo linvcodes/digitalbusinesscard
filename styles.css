@@ -2,12 +2,34 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--neon-dark) rgba(0, 0, 0, 0.6);
+    }
+
+    *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: var(--neon-dark);
+        border-radius: 999px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: var(--neon);
     }
 
     :root {
-        --neon: #dbfe01;
-        --neon-dark: #8a9e00;
-        --bg: #000;
+        --neon: #8ecbf5;
+        --neon-dark: #5a94c4;
+        --pink: #f5b8d0;
+        --pink-dark: #d98cae;
+        --bg: #010203;
         --white: #fff;
 
         --card-max: 460px;
@@ -25,34 +47,11 @@
         min-height: 100svh;
         background: var(--bg);
         color: var(--white);
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         display: grid;
         place-items: center;
         overflow: hidden;
         position: relative;
-    }
-
-    /* Matrix GIF background — real img for iOS Safari compat */
-    .matrix-bg {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.18;
-        pointer-events: none;
-    }
-
-    /* Lime neon colour overlay */
-    body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        background: var(--neon);
-        mix-blend-mode: color;
-        pointer-events: none;
     }
 
     /* Watermark */
@@ -72,20 +71,7 @@
         white-space: pre;
         line-height: 1.1;
         font-size: clamp(10px, 1.6vw, 16px);
-        text-shadow: 0 0 10px rgba(219, 254, 1, 0.25);
-    }
-
-    /* Scanlines overlay */
-    .scanlines {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 10;
-        background: repeating-linear-gradient(to bottom,
-                rgba(255, 255, 255, 0) 0px,
-                rgba(255, 255, 255, 0) 2px,
-                rgba(0, 0, 0, 0.28) 3px);
-        opacity: 0.9;
+        text-shadow: 0 0 10px rgba(142, 203, 245, 0.25);
     }
 
     .card-container {
@@ -107,7 +93,7 @@
         border: var(--border) solid var(--neon);
         border-radius: var(--radius);
         padding: var(--pad);
-        box-shadow: 0 0 30px rgba(219, 254, 1, 0.20), inset 0 0 16px rgba(219, 254, 1, 0.08);
+        box-shadow: 0 0 30px rgba(142, 203, 245, 0.20), inset 0 0 16px rgba(142, 203, 245, 0.08);
 
         display: flex;
         flex-direction: column;
@@ -119,7 +105,7 @@
 
     /* Terminal */
     .terminal-header {
-        border-top: 1px solid rgba(219, 254, 1, 0.28);
+        border-top: 1px solid rgba(142, 203, 245, 0.28);
         padding-top: clamp(6px, 1.4vh, 12px);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         color: var(--neon);
@@ -189,9 +175,9 @@
     }
 
     @keyframes boot-flash {
-        0%   { opacity: 1; background: var(--neon); box-shadow: 0 0 0 rgba(219,254,1,0); }
-        40%  { opacity: 1; background: #fff;        box-shadow: 0 0 18px rgba(219,254,1,0.9); }
-        100% { opacity: 0; background: var(--neon); box-shadow: 0 0 0 rgba(219,254,1,0); }
+        0%   { opacity: 1; background: var(--neon); box-shadow: 0 0 0 rgba(142, 203, 245,0); }
+        40%  { opacity: 1; background: #fff;        box-shadow: 0 0 18px rgba(142, 203, 245,0.9); }
+        100% { opacity: 0; background: var(--neon); box-shadow: 0 0 0 rgba(142, 203, 245,0); }
     }
 
     /* Profile */
@@ -206,7 +192,7 @@
         border-radius: clamp(12px, 2vw, 16px);
         border: var(--border) solid var(--neon);
         overflow: hidden;
-        box-shadow: 0 0 22px rgba(219, 254, 1, 0.55);
+        box-shadow: 0 0 22px rgba(142, 203, 245, 0.55);
         background: #050505;
     }
 
@@ -239,7 +225,7 @@
         font-weight: 950;
         letter-spacing: 0.08em;
         color: var(--neon);
-        text-shadow: 0 0 14px rgba(219, 254, 1, 0.35);
+        text-shadow: 0 0 14px rgba(142, 203, 245, 0.35);
         font-size: clamp(18px, 4.8vw, 26px);
     }
 
@@ -248,8 +234,8 @@
         letter-spacing: 0.22em;
         font-size: clamp(11px, 2.4vw, 13px);
         padding: clamp(6px, 1vh, 10px) 0;
-        border-top: 1px solid rgba(219, 254, 1, 0.18);
-        border-bottom: 1px solid rgba(219, 254, 1, 0.18);
+        border-top: 1px solid rgba(142, 203, 245, 0.18);
+        border-bottom: 1px solid rgba(142, 203, 245, 0.18);
     }
 
     .tagline {
@@ -263,7 +249,7 @@
         opacity: 0.82;
         white-space: pre;
         line-height: 1.1;
-        text-shadow: 0 0 10px rgba(219, 254, 1, 0.25);
+        text-shadow: 0 0 10px rgba(142, 203, 245, 0.25);
         font-size: clamp(8px, 2vw, 10px);
         display: inline-block;
         text-align: left;
@@ -340,13 +326,13 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         font-size: clamp(14px, 3.2vw, 16px);
-        box-shadow: 0 0 18px rgba(219, 254, 1, 0.65);
+        box-shadow: 0 0 18px rgba(142, 203, 245, 0.65);
         transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
     .btn-portfolio:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 28px rgba(219, 254, 1, 0.8);
+        box-shadow: 0 0 28px rgba(142, 203, 245, 0.8);
     }
 
     .social-links {
@@ -372,7 +358,7 @@
     .social-icon:hover {
         opacity: 1;
         transform: translateY(-2px);
-        filter: drop-shadow(0 0 6px rgba(219, 254, 1, 0.9));
+        filter: drop-shadow(0 0 6px rgba(142, 203, 245, 0.9));
     }
 
     /* Reveal — spring entrance */
@@ -390,8 +376,81 @@
                     transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Side tabs — vertical notebook tabs protruding from the right edge of the card,
-       CV stacked above QR */
+    /* ── Inline card views — home / CV / letter / QR swap within the same card frame ── */
+    .view {
+        display: none;
+    }
+
+    .view.is-current {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .view--home {
+        flex: 1;
+        gap: var(--gap);
+        justify-content: space-evenly;
+        min-height: 0;
+        animation: view-in 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .view--panel {
+        flex: 1;
+        min-height: 0;
+        position: relative;
+        padding-top: clamp(38px, 7vh, 52px);
+        animation: view-in 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .view-panel-content {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(10px, 2vh, 16px);
+        overflow-y: auto;
+    }
+
+    @keyframes view-in {
+        from { opacity: 0; transform: translateY(10px) scale(0.98); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .view-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background: var(--neon);
+        border: none;
+        border-radius: 999px;
+        padding: clamp(6px, 1.4vh, 10px) clamp(12px, 2.5vw, 16px);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-weight: 900;
+        font-size: clamp(10px, 2.2vw, 12px);
+        letter-spacing: 0.08em;
+        color: #000;
+        cursor: pointer;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+        box-shadow: 0 0 14px rgba(142, 203, 245, 0.5);
+    }
+
+    .view-back:hover {
+        transform: translateX(-2px);
+        box-shadow: 0 0 22px rgba(142, 203, 245, 0.75);
+    }
+
+    .view-back--pink {
+        background: var(--pink);
+        box-shadow: 0 0 14px rgba(245, 184, 208, 0.5);
+    }
+
+    .view-back--pink:hover {
+        box-shadow: 0 0 22px rgba(245, 184, 208, 0.75);
+    }
+
+    /* Side tabs — vertical notebook tabs protruding from the right edge of the card, stacked */
     .side-tabs {
         position: absolute;
         left: 100%;
@@ -403,78 +462,97 @@
         z-index: 5;
     }
 
-    .cv-tab,
-    .qr-tab {
+    .tab-btn {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+        background: var(--neon);
         color: #000;
         border: none;
         cursor: pointer;
-        padding: clamp(10px, 2.5vw, 16px) clamp(5px, 1.2vw, 9px);
+        padding: clamp(10px, 2vh, 16px) clamp(6px, 1.2vw, 9px);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-weight: 900;
-        font-size: clamp(9px, 1.6vw, 12px);
+        font-weight: 800;
+        font-size: clamp(9px, 1.8vw, 11px);
         letter-spacing: 0.16em;
         text-transform: uppercase;
         border-radius: 0 clamp(5px, 1vw, 8px) clamp(5px, 1vw, 8px) 0;
         white-space: nowrap;
+        box-shadow: 4px 0 18px rgba(219, 254, 1, 0.55);
         transition: box-shadow 180ms ease;
     }
 
-    .cv-tab {
-        background: var(--neon);
-        box-shadow: 4px 0 18px rgba(219, 254, 1, 0.55);
-    }
-
-    .cv-tab:hover {
+    .tab-btn:hover {
         box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
     }
 
-    .qr-tab {
-        background: var(--neon-dark);
-        box-shadow: 4px 0 18px rgba(138, 158, 0, 0.55);
+    .tab-btn.is-active {
+        box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
     }
 
-    .qr-tab:hover {
-        box-shadow: 6px 0 28px rgba(138, 158, 0, 0.85);
+    .tab-btn--pink {
+        background: var(--pink);
+        box-shadow: 4px 0 18px rgba(245, 184, 208, 0.55);
     }
 
-    /* QR Modal */
-    .qr-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        display: grid;
-        place-items: center;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(4px);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 260ms ease;
+    .tab-btn--pink:hover,
+    .tab-btn--pink.is-active {
+        box-shadow: 6px 0 28px rgba(245, 184, 208, 0.85);
     }
 
-    .qr-modal.open {
-        opacity: 1;
-        pointer-events: auto;
+    /* ── Cover Letter panel ─────────────────────────────────────────────────── */
+    .letter-body {
+        flex: 1;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: var(--pink-dark) rgba(0, 0, 0, 0.6);
+        padding-top: clamp(20px, 4vh, 32px);
+        padding-right: clamp(6px, 1.5vw, 10px);
     }
 
-    .qr-modal-inner {
-        position: relative;
-        background: #000;
-        border: 2px solid var(--neon);
-        border-radius: var(--radius);
-        padding: clamp(16px, 4vw, 32px) clamp(18px, 5vw, 36px) clamp(14px, 3vw, 24px);
-        display: flex;
-        flex-direction: column;
+    .letter-body::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .letter-body::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .letter-body::-webkit-scrollbar-thumb {
+        background: var(--pink-dark);
+        border-radius: 999px;
+    }
+
+    .letter-body::-webkit-scrollbar-thumb:hover {
+        background: var(--pink);
+    }
+
+    .letter-paragraph {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--white);
+        font-size: clamp(12.5px, 2.4vw, 14.5px);
+        line-height: 1.7;
+        opacity: 0.9;
+        max-width: 60ch;
+        text-align: left;
+        text-indent: 1.6em;
+        margin-bottom: clamp(12px, 2vh, 18px);
+    }
+
+    .letter-signoff {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: var(--pink);
+        font-size: clamp(13px, 2.6vw, 15px);
+        line-height: 1.6;
+        text-align: right;
+        opacity: 0.9;
+        margin-top: clamp(16px, 3vh, 24px);
+    }
+
+    /* QR panel */
+    .view--qr {
         align-items: center;
+        justify-content: center;
         gap: clamp(10px, 2vmin, 16px);
-        box-shadow: 0 0 40px rgba(219, 254, 1, 0.45);
-        transform: scale(0.88);
-        transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .qr-modal.open .qr-modal-inner {
-        transform: scale(1);
     }
 
     #qr-canvas {
@@ -484,30 +562,12 @@
         display: block;
     }
 
-    .qr-modal-label {
+    .qr-label {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         color: var(--neon);
         font-size: clamp(9px, 2vw, 12px);
         letter-spacing: 0.2em;
         opacity: 0.75;
-    }
-
-    .qr-modal-close {
-        position: absolute;
-        top: clamp(6px, 1.5vw, 10px);
-        right: clamp(8px, 2vw, 12px);
-        background: none;
-        border: none;
-        color: var(--neon);
-        font-size: clamp(14px, 3.5vw, 18px);
-        cursor: pointer;
-        opacity: 0.65;
-        line-height: 1;
-        transition: opacity 140ms ease;
-    }
-
-    .qr-modal-close:hover {
-        opacity: 1;
     }
 
     /* ── Calendly modal ─────────────────────────────────────────────────────── */
@@ -536,7 +596,7 @@
         background: #000;
         border: 2px solid var(--neon);
         border-radius: var(--radius);
-        box-shadow: 0 0 40px rgba(219, 254, 1, 0.35);
+        box-shadow: 0 0 40px rgba(142, 203, 245, 0.35);
         overflow: hidden;
         transform: scale(0.92);
         transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -582,68 +642,10 @@
         width: 100% !important;
         height: 100% !important;
         border: none !important;
-        filter: invert(1) hue-rotate(35deg) !important;
+        filter: invert(1) hue-rotate(180deg) !important;
     }
 
-    /* ── CV / Projects modal ────────────────────────────────────────────────── */
-    .cv-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        display: grid;
-        place-items: center;
-        background: rgba(0, 0, 0, 0.82);
-        backdrop-filter: blur(4px);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 260ms ease;
-    }
-
-    .cv-modal.open {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .cv-modal-inner {
-        position: relative;
-        width: min(94vw, 480px);
-        height: min(80vh, 720px);
-        background: #000;
-        border: 2px solid var(--neon);
-        border-radius: var(--radius);
-        box-shadow: 0 0 40px rgba(219, 254, 1, 0.35);
-        overflow-y: auto;
-        transform: scale(0.92);
-        transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-        padding: clamp(16px, 4vw, 28px) clamp(14px, 3.5vw, 22px);
-        display: flex;
-        flex-direction: column;
-        gap: clamp(10px, 2vh, 16px);
-    }
-
-    .cv-modal.open .cv-modal-inner {
-        transform: scale(1);
-    }
-
-    .cv-modal-close {
-        position: absolute;
-        top: clamp(6px, 1.5vw, 10px);
-        right: clamp(8px, 2vw, 12px);
-        z-index: 10;
-        background: var(--neon);
-        border: none;
-        border-radius: 50%;
-        width: clamp(24px, 5vw, 32px);
-        height: clamp(24px, 5vw, 32px);
-        font-size: clamp(12px, 2.5vw, 16px);
-        line-height: 1;
-        cursor: pointer;
-        display: grid;
-        place-items: center;
-        color: #000;
-        font-weight: 900;
-    }
-
+    /* ── CV / Projects panel ────────────────────────────────────────────────── */
     .cv-modal-title {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         color: var(--neon);
@@ -672,12 +674,12 @@
         font-size: clamp(11px, 2.6vw, 13px);
         letter-spacing: 0.16em;
         opacity: 0.85;
-        border-bottom: 1px solid rgba(219, 254, 1, 0.3);
+        border-bottom: 1px solid rgba(142, 203, 245, 0.3);
         padding-bottom: 4px;
     }
 
     .cv-entry {
-        border: 1px solid rgba(219, 254, 1, 0.4);
+        border: 1px solid rgba(142, 203, 245, 0.4);
         border-radius: clamp(8px, 1.5vw, 12px);
         padding: clamp(10px, 2vw, 14px);
         display: flex;
@@ -733,7 +735,7 @@
     }
 
     .cv-entry-bullets--flat {
-        border: 1px solid rgba(219, 254, 1, 0.4);
+        border: 1px solid rgba(142, 203, 245, 0.4);
         border-radius: clamp(8px, 1.5vw, 12px);
         padding: clamp(10px, 2vw, 14px);
     }
@@ -765,14 +767,29 @@
         margin-left: 6px;
     }
 
-    .cv-project-frame {
-        display: block;
+    .cv-project-frame-wrap {
+        container-type: inline-size;
         width: 100%;
-        height: clamp(140px, 26vh, 190px);
-        margin-top: clamp(6px, 1.2vh, 10px);
+        max-width: 640px;
+        aspect-ratio: 16 / 9;
+        margin: clamp(6px, 1.2vh, 10px) auto 0;
         border: 1px solid var(--neon);
         border-radius: clamp(6px, 1vw, 10px);
         background: #000;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .cv-project-frame {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1280px;
+        height: 720px;
+        border: none;
+        transform-origin: top left;
+        transform: scale(calc(100cqw / 1280));
     }
 
     /* Short viewports (landscape phones, small windows) */
@@ -808,8 +825,9 @@
             width: 96vw;
         }
 
-        .side-tabs {
-            display: none;
+        .tab-btn {
+            font-size: 8px;
+            padding: 6px 3px;
         }
     }
 

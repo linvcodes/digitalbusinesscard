@@ -25,107 +25,112 @@
             >
         </div>
 
-        <img src="matrix.gif" class="matrix-bg" aria-hidden="true" alt="">
-        <div class="scanlines" aria-hidden="true"></div>
-
         <main class="card-container">
             <section class="card">
-                <!-- PROFILE -->
-                <div class="profile-section is-hidden" id="profile-section">
-                    <div class="image-container">
-                        <img
-                            src="profile.jpg"
-                            alt="Kristina Mladenova"
-                            onerror="this.parentElement.innerHTML='<div class=\'placeholder-img\'>KM</div>'"
-                        />
-                    </div>
-                </div>
 
-                <!-- INFO -->
-                <div class="info-section is-hidden" id="info-section">
-                    <h1 class="name">KRISTINA MLADENOVA</h1>
-                    <p class="job-title">ADTECH ARCHITECT · FOUNDER · SPEAKER</p>
-                    <p class="tagline">Studio since 2016. Built AI tooling across 200+ repos. Cold DMs → conference stages.</p>
-
-                    <!-- ASCII FLAPPY BIRD -->
-                    <div class="flappy-wrap">
-                        <pre id="flappy-canvas" class="ascii-computer flappy-pre"></pre>
-                        <div id="flappy-overlay" class="flappy-overlay"></div>
-                    </div>
-                    <p class="flappy-label">tap to play Not-flappybird</p>
-
-                </div>
-
-                <!-- ACTIONS -->
-                <div class="actions is-hidden" id="actions-section">
-                    <button
-                        class="btn-portfolio"
-                        onclick="SFX.play('click', 0.6); document.getElementById('cal-modal').classList.add('open'); return false;"
-                    >
-                        BOOK A MEETING
-                    </button>
-                </div>
-                <!-- TERMINAL FOOTER -->
-                <div class="terminal-header" id="terminal-header">
-                    <div class="terminal-row">
-                        <div class="terminal-text">
-                            <div id="terminal-content"></div>
-                            <span class="cursor" aria-hidden="true">█</span>
-                        </div>
-                        <div class="social-links" aria-label="Social links">
-                            <!-- LINKEDIN -->
-                            <a
-                                href="https://www.linkedin.com/in/kmladenova/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="social-icon"
-                                aria-label="LinkedIn"
-                                title="LinkedIn"
-                            >
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                </svg>
-                            </a>
-                            <!-- GITHUB -->
-                            <a
-                                href="https://github.com/linvcodes"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="social-icon"
-                                aria-label="GitHub"
-                                title="GitHub"
-                            >
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </a>
+                <!-- HOME VIEW -->
+                <div class="view view--home is-current" id="view-home">
+                    <!-- PROFILE -->
+                    <div class="profile-section is-hidden" id="profile-section">
+                        <div class="image-container">
+                            <img
+                                src="profile.jpg"
+                                alt="Kristina Mladenova"
+                                onerror="this.parentElement.innerHTML='<div class=\'placeholder-img\'>KM</div>'"
+                            />
                         </div>
                     </div>
+
+                    <!-- INFO -->
+                    <div class="info-section is-hidden" id="info-section">
+                        <h1 class="name">KRISTINA MLADENOVA</h1>
+                        <p class="job-title">FULLSTACK &middot; DESIGN &middot; MARKETING &middot; CYBERSEC</p>
+                        <p class="tagline">One-person studio since 2016. AI tooling across 200+ repos. Cold DMs to conference stages.</p>
+
+                        <!-- ASCII FLAPPY BIRD -->
+                        <div class="flappy-wrap">
+                            <pre id="flappy-canvas" class="ascii-computer flappy-pre"></pre>
+                            <div id="flappy-overlay" class="flappy-overlay"></div>
+                        </div>
+                        <p class="flappy-label">tap to play Not-flappybird</p>
+
+                    </div>
+
+                    <!-- ACTIONS -->
+                    <div class="actions is-hidden" id="actions-section">
+                        <button
+                            class="btn-portfolio"
+                            onclick="SFX.play('click', 0.6); document.getElementById('cal-modal').classList.add('open'); return false;"
+                        >
+                            BOOK A MEETING
+                        </button>
+                    </div>
+                    <!-- TERMINAL FOOTER -->
+                    <div class="terminal-header" id="terminal-header">
+                        <div class="terminal-row">
+                            <div class="terminal-text">
+                                <div id="terminal-content"></div>
+                                <span class="cursor" aria-hidden="true">█</span>
+                            </div>
+                            <div class="social-links" aria-label="Social links">
+                                <!-- LINKEDIN -->
+                                <a
+                                    href="https://www.linkedin.com/in/kmladenova/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="social-icon"
+                                    aria-label="LinkedIn"
+                                    title="LinkedIn"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                    </svg>
+                                </a>
+                                <!-- GITHUB -->
+                                <a
+                                    href="https://github.com/linvcodes"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="social-icon"
+                                    aria-label="GitHub"
+                                    title="GitHub"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CV VIEW -->
+                <div class="view view--panel" id="view-cv">
+                    <button class="view-back" data-back aria-label="Back to profile">← BACK</button>
+                    <div class="view-panel-content" id="view-cv-content"></div>
+                </div>
+
+                <!-- COVER LETTER VIEW -->
+                <div class="view view--panel" id="view-letter">
+                    <button class="view-back view-back--pink" data-back aria-label="Back to profile">← BACK</button>
+                    <div class="view-panel-content" id="view-letter-content"></div>
+                </div>
+
+                <!-- QR VIEW -->
+                <div class="view view--panel view--qr" id="view-qr">
+                    <button class="view-back" data-back aria-label="Back to profile">← BACK</button>
+                    <canvas id="qr-canvas"></canvas>
+                    <p class="qr-label">SCAN TO VISIT</p>
                 </div>
 
                 <!-- SIDE TABS -->
-                <div class="side-tabs">
-                    <!-- CV TAB -->
-                    <button class="cv-tab" id="cv-tab" aria-label="View CV">
-                        <span>CV / PROJECTS</span>
-                    </button>
-
-                    <!-- QR TAB -->
-                    <button class="qr-tab" id="qr-tab" aria-label="Scan QR Code">
-                        <span>SCAN QR CODE</span>
-                    </button>
+                <div class="side-tabs" id="tab-bar">
+                    <button class="tab-btn" id="cv-tab" data-view="view-cv" aria-label="View CV">CV / PROJECTS</button>
+                    <button class="tab-btn tab-btn--pink" id="letter-tab" data-view="view-letter" aria-label="Read Cover Letter">COVER LETTER</button>
+                    <button class="tab-btn" id="qr-tab" data-view="view-qr" aria-label="Scan QR Code">SCAN QR CODE</button>
                 </div>
             </section>
         </main>
-
-        <!-- QR POPUP MODAL -->
-        <div class="qr-modal" id="qr-modal" role="dialog" aria-modal="true" aria-label="QR Code">
-            <div class="qr-modal-inner">
-                <canvas id="qr-canvas"></canvas>
-                <p class="qr-modal-label">SCAN TO VISIT</p>
-                <button class="qr-modal-close" id="qr-modal-close" aria-label="Close">✕</button>
-            </div>
-        </div>
 
         <!-- Calendly modal -->
         <div class="cal-modal" id="cal-modal" onclick="if(event.target===this)this.classList.remove('open')" >
@@ -139,14 +144,12 @@
             </div>
         </div>
 
-        <!-- CV modal -->
-        <div class="cv-modal" id="cv-modal" role="dialog" aria-modal="true" aria-label="CV">
-            <div class="cv-modal-inner">
-                <button class="cv-modal-close" id="cv-modal-close" aria-label="Close">✕</button>
+        <!-- CV panel content template (moved into #view-cv by script.js) -->
+        <template id="cv-template">
                 <h2 class="cv-modal-title">CV</h2>
 
                 <section class="cv-section">
-                    <p class="cv-summary">I've run my own studio since 2016. I find users, talk to them directly, and build what solves their problem. I do this on Reddit and Discord, through cold outreach, and through ads on a small budget. I also build the tools that make the follow-up work fast.</p>
+                    <p class="cv-summary">I've run my own studio since 2016, covering the full pipeline myself: graphic design and UI/UX, fullstack engineering, growth marketing, and cybersecurity to keep it all honest. I find users, talk to them directly, and build what solves their problem — on Reddit and Discord, through cold outreach, and through ads on a small budget. I also build the tools that make the follow-up work fast.</p>
                 </section>
 
                 <section class="cv-section">
@@ -168,24 +171,43 @@
                             <li>
                                 Built <strong>Soulmental.org</strong>, a webshop with orders, blog, and about page for a well known local music producer group.
                                 <a href="https://soulmental.org" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
-                                <iframe class="cv-project-frame" src="https://soulmental.org" loading="lazy" title="Soulmental.org"></iframe>
+                                <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://soulmental.org" loading="lazy" title="Soulmental.org"></iframe></div>
                             </li>
                             <li>
                                 Built <strong>Liber8tech.org</strong>, a technical writing and news blog.
                                 <a href="https://liber8tech.org" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
-                                <iframe class="cv-project-frame" src="https://liber8tech.org" loading="lazy" title="Liber8tech.org"></iframe>
+                                <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://liber8tech.org" loading="lazy" title="Liber8tech.org"></iframe></div>
                             </li>
                         </ul>
                     </div>
 
                     <div class="cv-entry">
                         <div class="cv-entry-header">
-                            <span class="cv-entry-role">AdTech System Architect, CrazyLabs</span>
+                            <span class="cv-entry-role">Interactive AdTech Expert, System Architect &amp; Lead Dev, CrazyLabs</span>
                             <span class="cv-entry-date">2025 — present</span>
                         </div>
                         <ul class="cv-entry-bullets">
                             <li>Brought back a dead ad channel — used AI research to find the real long term problem instead of chasing a quick fix.</li>
                             <li>Built automation and multi-agent tooling across 200+ repos, cutting manual work for the team.</li>
+                            <li>Architected a scalable infrastructure for HTML5 and WebGL playables, reducing production time; built automation pipelines for packaging, QA, and Git-based version control.</li>
+                            <li>
+                                Built <strong>MoraDuth</strong>, a one-click embeddable OAuth login provider.
+                                <a href="https://moraduth.replit.app" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                                <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://moraduth.replit.app" loading="lazy" title="MoraDuth"></iframe></div>
+                            </li>
+                            <li>
+                                Built <strong>AdSkinner</strong>, a bulk-batch, network-agnostic AI-native playable editor and iterator.
+                                <a href="https://adskinner.replit.app" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                                <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://adskinner.replit.app" loading="lazy" title="AdSkinner"></iframe></div>
+                            </li>
+                            <li>
+                                Built <strong>Localize Playables</strong>, an automated i18n/translation pipeline for playable ad builds.
+                                <a href="https://localize-playables.replit.app" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                                <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://localize-playables.replit.app" loading="lazy" title="Localize Playables"></iframe></div>
+                            </li>
+                            <li>
+                                Built <strong>HypeLab</strong> (internal, unhosted) — a full marketing AI-native audit system: analyzes and compares market campaigns, auto-reskins playables, and runs a self-improving 5-agent team modeling every marketing role as a coordinating AI agent.
+                            </li>
                         </ul>
                     </div>
 
@@ -196,7 +218,11 @@
                         </div>
                         <ul class="cv-entry-bullets">
                             <li>Main contact between the European board and the local 400 member committee — did the company outreach and networking, then turned it into a newsletter for the members.</li>
-                            <li>Built an email template generator so non-technical members could send branded newsletters without touching code — still used today.</li>
+                            <li>
+                                Built an email template generator so non-technical members could send branded newsletters without touching code — still used today.
+                                <a href="https://kristinamladenova.github.io/EESTEC-mail-template/" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
+                                <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://kristinamladenova.github.io/EESTEC-mail-template/" loading="lazy" title="EESTEC Mail Template Generator"></iframe></div>
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -208,7 +234,7 @@
                         <li>
                             Speaker, <strong>Crazy For AI 2</strong> — 200+ people, live demo building a product from idea to launch.
                             <a href="https://linvcodes.github.io/CrazyForAi/" target="_blank" rel="noopener noreferrer" class="cv-project-link">OPEN ↗</a>
-                            <iframe class="cv-project-frame" src="https://linvcodes.github.io/CrazyForAi/" loading="lazy" title="Crazy For AI"></iframe>
+                            <div class="cv-project-frame-wrap"><iframe class="cv-project-frame" src="https://linvcodes.github.io/CrazyForAi/" loading="lazy" title="Crazy For AI"></iframe></div>
                         </li>
                         <li>Workshop leader, Base42/EESTEC — 6 hour hands-on session on Three.js and WebGL game dev.</li>
                     </ul>
@@ -217,9 +243,11 @@
                 <section class="cv-section">
                     <h3 class="cv-section-title">SKILLS</h3>
                     <ul class="cv-entry-bullets cv-entry-bullets--flat">
+                        <li><strong>Design:</strong> UI/UX, branding, visual identity, graphic design, print (billboard-scale precision)</li>
+                        <li><strong>Engineering:</strong> TypeScript, JavaScript, Python, React, Node, Three.js/WebGL, PixiJS, AI agent workflows, scraping</li>
+                        <li><strong>Marketing &amp; Growth:</strong> paid ads on small budgets, organic social growth, positioning, lead gen, UA/creative testing</li>
                         <li><strong>Community:</strong> Reddit, Discord, Twitter, cold outreach, DMs, pitch decks</li>
-                        <li><strong>Growth:</strong> paid ads on small budgets, organic social growth, positioning, lead gen</li>
-                        <li><strong>Technical:</strong> TypeScript, JavaScript, Python, React, Node, AI agent workflows, scraping</li>
+                        <li><strong>Cybersecurity:</strong> Computer Networks and Security degree, prompt-injection screening, rate-limiting, secret-detection, security-first AI ingestion</li>
                     </ul>
                 </section>
 
@@ -231,9 +259,25 @@
                         <li>DSULUD Lazar Licenoski — Graduate Graphic Technician</li>
                     </ul>
                 </section>
-            </div>
-        </div>
+        </template>
 
+        <!-- Cover Letter panel content template (moved into #view-letter by script.js) -->
+        <template id="letter-template">
+                <div class="letter-body" id="letter-body">
+                    <p class="letter-paragraph">Once upon a time, in always-sunny Skopje, right after the dotcom boom, there was a little girl who saw the world in Technicolor.</p>
+                    <p class="letter-paragraph">I always trusted visuals more than words. Movement made sense to me in a way paragraphs never did. I kept coming back to the same thought: if a picture can replace a thousand words, what happens when the picture moves? That is how I ended up building worlds instead of describing them. The tool was code.</p>
+                    <p class="letter-paragraph">I have been writing it since 2012. Not as a hobby. As a compulsion. I started with HTML websites, moved into Python bots and automation, and eventually built botnets too. Not for chaos, but because I wanted to understand how networks break before I committed to making them secure. I have always been obsessed with systems, especially the moment they fail.</p>
+                    <p class="letter-paragraph">Pentesting. Man-in-the-middle checks. Pulling infrastructure apart just to see what is actually holding it together. I built my own studio, worked with clients directly, and built my own tools because the ones I needed simply did not exist yet. Somewhere along the way I learned something important: creativity is a system. And systems can be engineered. Beauty scales better when it is built properly.</p>
+                    <p class="letter-paragraph">I was raised to lead by doing. To take initiative. To build before being asked. To offer help through capability, not through noise. A CV does not show the real work: the years of building before the title existed, the standards you set for yourself when nobody is watching, the confidence that comes from debugging your own architecture long before anyone pays you for it. That is what shaped me.</p>
+                    <p class="letter-paragraph">In the last few years I have been building systems that ship. Systems that generate, localize, validate, and deploy. And lately I have been building the builders themselves. Logic layers that teach AI how to think inside a domain, not just respond with fluent output. And because I spent years breaking systems before building them seriously, security is not an afterthought for me. It is the baseline. Prompt injection screening. Secret detection. Compliance built in by default.</p>
+                    <p class="letter-paragraph">I pentest what I build, including agentic systems. I once measured the difference between a model that was properly taught and one that was not. The gap was 25.7 percentage points. The trained one stayed in scope. It pushed back when the premise was wrong. It made better decisions.</p>
+                    <p class="letter-paragraph">Because judgment is also a system. And systems can be designed. Now I am looking for the next world to build. A place where design meets data. Where AI supports creation instead of replacing it. Where imagination still has a compiler. At this point, you are not just hiring one engineer. You are hiring my carefully built team of AI agents, and I am the slightly overprotective systems architect who makes sure they behave.</p>
+                    <p class="letter-paragraph">Thank you for reading. If this resonated, we are probably building the same kind of universe.</p>
+                    <p class="letter-signoff">Made with love and coffee,<br>— Kristina</p>
+                </div>
+        </template>
+
+        <script src="splash-cursor.js"></script>
         <script src="script.js"></script>
         <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
     </body>

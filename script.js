@@ -75,122 +75,65 @@ document.addEventListener("DOMContentLoaded", () => {
     const info     = document.getElementById("info-section");
     const actions  = document.getElementById("actions-section");
     const qrCanvas = document.getElementById("qr-canvas");
-    const qrTab    = document.getElementById("qr-tab");
-    const qrModal  = document.getElementById("qr-modal");
 
-    // QR tab popup
-    let qrGenerated = false;
-    function openQrModal() {
-        SFX.play("qropen", 0.5);
-        if (!qrGenerated) {
-            // Read the CSS variable so QR size stays in sync with CSS clamp
-            const qrSize = parseInt(
-                getComputedStyle(document.documentElement)
-                    .getPropertyValue("--qr-size")
-                    .trim()
-            ) || 200;
-            QRCode.toCanvas(qrCanvas, "https://linvcodes.github.io/digitalbusinesscard", {
-                width: qrSize,
-                margin: 2,
-                color: { dark: "#dbfe01", light: "#000000" }
-            });
-            qrGenerated = true;
-        }
-        qrModal.classList.add("open");
-    }
-    function closeQrModal() {
-        SFX.play("qrclose", 0.5);
-        qrModal.classList.remove("open");
-    }
+    // Inline card views — clicking a tab swaps the active view within the same card frame
+    const cardEl    = document.querySelector(".card");
+    const views     = Array.from(document.querySelectorAll(".view"));
+    const tabBtns   = Array.from(document.querySelectorAll(".tab-btn"));
+    let activeViewId = "view-home";
+    let qrGenerated  = false;
 
-    qrTab.addEventListener("click", openQrModal);
-    document.getElementById("qr-modal-close").addEventListener("click", closeQrModal);
-    qrModal.addEventListener("click", (e) => { if (e.target === qrModal) closeQrModal(); });
+    // Populate CV / Letter panels from their <template> tags
+    document.getElementById("view-cv-content")
+        .appendChild(document.getElementById("cv-template").content.cloneNode(true));
+    document.getElementById("view-letter-content")
+        .appendChild(document.getElementById("letter-template").content.cloneNode(true));
 
-    // CV / Projects tab popup
-    const cvTab   = document.getElementById("cv-tab");
-    const cvModal = document.getElementById("cv-modal");
-
-    function openCvModal() {
-        SFX.play("qropen", 0.5);
-        cvModal.classList.add("open");
-    }
-    function closeCvModal() {
-        SFX.play("qrclose", 0.5);
-        cvModal.classList.remove("open");
-    }
-
-    cvTab.addEventListener("click", openCvModal);
-    document.getElementById("cv-modal-close").addEventListener("click", closeCvModal);
-    cvModal.addEventListener("click", (e) => { if (e.target === cvModal) closeCvModal(); });
-
-    const lines = ["> booting profile...", "> loading links...", "> ready"];
-
-    const GLYPHS          = "!<>-_\\/[]{}=+*^?#@$%&|";
-    const TYPE_SPEED      = 10;  // ms between chars
-    const SCRAMBLE_FRAMES = 1;   // rAF noise frames before resolving
-    const LINE_DELAY      = 90;
-
-    let lineIndex = 0;
-    let charIndex = 0;
-
-    function randomGlyph() {
-        return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-    }
-
-    function scrambleChar(span, targetChar, framesLeft, onDone) {
-        if (framesLeft <= 0) {
-            span.textContent = targetChar;
-            span.classList.add("resolved");
-            onDone();
-            return;
-        }
-        span.textContent = randomGlyph();
-        requestAnimationFrame(() =>
-            scrambleChar(span, targetChar, framesLeft - 1, onDone)
-        );
-    }
-
-    function typeNextChar() {
-        if (lineIndex >= lines.length) { onBootComplete(); return; }
-
-        const line = lines[lineIndex];
-        if (charIndex === 0 && lineIndex > 0)
-            terminalContent.appendChild(document.createElement("br"));
-
-        const span = document.createElement("span");
-        terminalContent.appendChild(span);
-        const targetChar = line[charIndex++];
-
-        scrambleChar(span, targetChar, SCRAMBLE_FRAMES, () => {
-            SFX.play("type", 0.18);
-            if (charIndex < line.length) {
-                setTimeout(typeNextChar, TYPE_SPEED);
-            } else {
-                lineIndex++; charIndex = 0;
-                setTimeout(typeNextChar, LINE_DELAY);
-            }
+    function generateQr() {
+        if (qrGenerated) return;
+        const qrSize = parseInt(
+            getComputedStyle(document.documentElement)
+                .getPropertyValue("--qr-size")
+                .trim()
+        ) || 200;
+        QRCode.toCanvas(qrCanvas, "https://linvcodes.github.io/digitalbusinesscard", {
+            width: qrSize,
+            margin: 2,
+            color: { dark: "#dbfe01", light: "#000000" }
         });
+        qrGenerated = true;
     }
 
-    function show(el, delay = 0) {
-        setTimeout(() => {
-            el.classList.remove("is-hidden");
-            el.classList.add("is-shown");
-        }, delay);
+    function showView(viewId) {
+        if (viewId === activeViewId) return;
+        SFX.play(viewId === "view-home" ? "qrclose" : "qropen", 0.5);
+
+        if (viewId === "view-qr") generateQr();
+
+        views.forEach(v => v.classList.toggle("is-current", v.id === viewId));
+        tabBtns.forEach(btn => btn.classList.toggle("is-active", btn.dataset.view === viewId));
+
+        cardEl.classList.toggle("showing-panel", viewId !== "view-home");
+        activeViewId = viewId;
     }
 
-    function onBootComplete() {
-        SFX.play("boot", 0.5);
-        cursor.classList.add("boot-flash");
-        setTimeout(() => { cursor.style.display = "none"; }, 420);
+    tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            showView(btn.dataset.view === activeViewId ? "view-home" : btn.dataset.view);
+        });
+    });
 
-        show(profile,  80);
-        show(info,    220);
-        show(actions, 380);
-    }
+    document.querySelectorAll("[data-back]").forEach(btn => {
+        btn.addEventListener("click", () => showView("view-home"));
+    });
 
-    setTimeout(typeNextChar, 180);
+    terminalContent.textContent = "> ready";
+    cursor.style.display = "none";
+
+    [profile, info, actions].forEach(el => {
+        el.classList.remove("is-hidden");
+        el.classList.add("is-shown");
+    });
 });
 
 // ── ASCII Flappy Bird ─────────────────────────────────────────────────────────
