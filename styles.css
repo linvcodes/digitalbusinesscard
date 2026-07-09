@@ -477,16 +477,16 @@
         text-transform: uppercase;
         border-radius: 0 clamp(5px, 1vw, 8px) clamp(5px, 1vw, 8px) 0;
         white-space: nowrap;
-        box-shadow: 4px 0 18px rgba(219, 254, 1, 0.55);
+        box-shadow: 4px 0 18px rgba(142, 203, 245, 0.55);
         transition: box-shadow 180ms ease;
     }
 
     .tab-btn:hover {
-        box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
+        box-shadow: 6px 0 28px rgba(142, 203, 245, 0.85);
     }
 
     .tab-btn.is-active {
-        box-shadow: 6px 0 28px rgba(219, 254, 1, 0.85);
+        box-shadow: 6px 0 28px rgba(142, 203, 245, 0.85);
     }
 
     .tab-btn--pink {
