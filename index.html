@@ -30,31 +30,33 @@
 
                 <!-- HOME VIEW -->
                 <div class="view view--home is-current" id="view-home">
-                    <!-- PROFILE -->
-                    <div class="profile-section is-hidden" id="profile-section">
-                        <div class="image-container">
-                            <img
-                                src="profile.jpg"
-                                alt="Kristina Mladenova"
-                                onerror="this.parentElement.innerHTML='<div class=\'placeholder-img\'>KM</div>'"
-                            />
+                    <!-- PROFILE + INFO -->
+                    <div class="profile-info-row">
+                        <!-- PROFILE -->
+                        <div class="profile-section is-hidden" id="profile-section">
+                            <div class="image-container">
+                                <img
+                                    src="profile.jpg"
+                                    alt="Kristina Mladenova"
+                                    onerror="this.parentElement.innerHTML='<div class=\'placeholder-img\'>KM</div>'"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- INFO -->
+                        <div class="info-section is-hidden" id="info-section">
+                            <h1 class="name">KRISTINA MLADENOVA</h1>
+                            <p class="job-title">FULLSTACK &middot; DESIGN &middot; MARKETING &middot; CYBERSEC</p>
+                            <p class="tagline">One-person studio since 2016. AI tooling across 200+ repos. Cold DMs to conference stages.</p>
                         </div>
                     </div>
 
-                    <!-- INFO -->
-                    <div class="info-section is-hidden" id="info-section">
-                        <h1 class="name">KRISTINA MLADENOVA</h1>
-                        <p class="job-title">FULLSTACK &middot; DESIGN &middot; MARKETING &middot; CYBERSEC</p>
-                        <p class="tagline">One-person studio since 2016. AI tooling across 200+ repos. Cold DMs to conference stages.</p>
-
-                        <!-- ASCII FLAPPY BIRD -->
-                        <div class="flappy-wrap">
-                            <pre id="flappy-canvas" class="ascii-computer flappy-pre"></pre>
-                            <div id="flappy-overlay" class="flappy-overlay"></div>
-                        </div>
-                        <p class="flappy-label">tap to play Not-flappybird</p>
-
+                    <!-- ASCII FLAPPY BIRD -->
+                    <div class="flappy-wrap">
+                        <pre id="flappy-canvas" class="ascii-computer flappy-pre"></pre>
+                        <div id="flappy-overlay" class="flappy-overlay"></div>
                     </div>
+                    <p class="flappy-label">tap to play Not-flappybird</p>
 
                     <!-- ACTIONS -->
                     <div class="actions is-hidden" id="actions-section">
@@ -116,18 +118,10 @@
                     <div class="view-panel-content" id="view-letter-content"></div>
                 </div>
 
-                <!-- QR VIEW -->
-                <div class="view view--panel view--qr" id="view-qr">
-                    <button class="view-back" data-back aria-label="Back to profile">← BACK</button>
-                    <canvas id="qr-canvas"></canvas>
-                    <p class="qr-label">SCAN TO VISIT</p>
-                </div>
-
                 <!-- SIDE TABS -->
                 <div class="side-tabs" id="tab-bar">
                     <button class="tab-btn" id="cv-tab" data-view="view-cv" aria-label="View CV">CV / PROJECTS</button>
                     <button class="tab-btn tab-btn--pink" id="letter-tab" data-view="view-letter" aria-label="Read Cover Letter">COVER LETTER</button>
-                    <button class="tab-btn tab-btn--blue-dark" id="qr-tab" data-view="view-qr" aria-label="Scan QR Code">SCAN QR CODE</button>
                 </div>
             </section>
         </main>
